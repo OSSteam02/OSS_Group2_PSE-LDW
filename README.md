@@ -1,6 +1,6 @@
 # OSS_Group2_PSE-LDW
 
-<img>https://user-images.githubusercontent.com/37777412/166202223-9ac229a0-ee9d-4cd2-a567-81539c7affba.png</img>
+![image](https://user-images.githubusercontent.com/37777412/166202332-e8e8273a-5181-4f68-9474-172a5e8b1747.png)
 
 
 >주제: 체온측정 점호
