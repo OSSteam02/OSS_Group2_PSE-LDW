@@ -1,7 +1,7 @@
 #pragma warning(disable:4996)
 #include <stdio.h>
 #include <stdlib.h>
-#include "temperRecord.h"
+#include "tempRep.h"
 #define MAX 100
 
 
