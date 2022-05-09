@@ -14,7 +14,7 @@ void saveData(student *p[], int count){
 }
 
 
-int createProduct(student *p){
+int createStudent(student *p){
 
 	printf("이름은? ");
 	scanf("%s", p->name);
