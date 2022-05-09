@@ -118,7 +118,7 @@ int deleteStudent(student *p, int* *index){
 
 int selectMenu(){
     int menu;
-    printf("\n***  ***\n");
+    printf("\n*** 온도측정 ***\n");
     printf("1. 조회\n");
     printf("2. 추가\n");
     printf("3. 수정\n");
@@ -174,7 +174,6 @@ int searchStudent(student *p, int count){
      printf("\n");
      return 1;
 }
-
 
 
 
