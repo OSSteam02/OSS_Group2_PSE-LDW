@@ -7,7 +7,7 @@ typedef struct
     char name[100];
     int std_id;
     int date;
-    float tmep;
+    float temp;
     int penalty;
     int room;
 } student;
