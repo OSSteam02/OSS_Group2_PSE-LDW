@@ -3,7 +3,7 @@
 
 int main(void){
 
-    Product *p1[100];
+    student *p1[100];
 #ifdef DEBUG
     printf("DEBUGMODE => Hello World!!\n");
 #endif
@@ -17,7 +17,7 @@ int main(void){
             if(count > 0)
 			    listProduct(p1,curcount);}
         else if (menu == 2){
-            p1[curcount] = (Product *)malloc(sizeof(Product));
+            p1[curcount] = (student *)malloc(sizeof(student));
             count += createProduct(p1[curcount]); curcount++;}
         else if (menu == 3){
              no = selectDataNo(p1, curcount);
@@ -51,4 +51,3 @@ int main(void){
     return 0;
 }
 
-printf("a");
