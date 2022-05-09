@@ -1,13 +1,13 @@
 #include "manager.h"
 
-void saveData(Product *p[], int count){
+void saveData(student *p[], int count){
     FILE *fp;
-    fp = fopen("product.txt", "wt");
+    fp = fopen("temperature.txt", "wt");
 
     for(int i = 0; i<count; i++){
-        if(p[i]->price == -1) continue;
-        fprintf(fp,"%s %s %s %d %d\n"
-        ,p[i]->name,p[i]->explain, p[i]->weight, p[i]->price, p[i]->deliever); 
+        if(p[i]->std_id == -1) continue;
+        fprintf(fp,"%s %d %d %1f %d\n"
+        ,p[i]->name,p[i]->std_id, p[i]->date, p[i]->temp, p[i]->room); 
     }
     fclose(fp);
     printf("=> 저장됨! ");
@@ -37,51 +37,52 @@ int createProduct(Student *p){
 }
 
 
-void listProduct(Product *p[], int count)
+void listStudent(student *p[], int count)
 {
-     printf("\nNo Name explain weight price deliver \n");
+     printf("\nNo Name std_id date temp room \n");
      printf("=============================\n");
      for(int i =0; i<count; i++)
      {
-         if(p[i]->price == -1 && p[i]->deliever == -1) continue;
+         if(p[i]->std_id == -1 && p[i]->date == -1) continue;
          printf("%2d ", i+1);
-         readProduct(*p[i]);
+         readStudent(*p[i]);
      }
      printf("\n");
 }
 
 
-void readProduct(Product p){
+void readStudent(student p){
 
-    if(p.price == -1 && p.deliever == -1) return;
-        printf("%8s%8s%8s%8d%8d\n", p.name, p.explain, p.weight, p.price, p.deliever);
+    if(p.std_id == -1 && p.date == -1) return;
+        printf("%8s%8d%8d%8f%8d\n", p.name, p.std_id, p.date, p.temp, p.room);
     
 }
 
-int updateProduct(Product *p){
+
+int updateStudent(student *p){
 	printf("이름은? ");
 	scanf("%s", p->name);
 
-	printf("원산지는? ");
-	scanf("%s", p->explain);
+	printf("학번은? ");
+	scanf("%d", &p->std_id);
 
-	printf("중량은? ");
-	scanf("%s", p->weight);
+	printf("날짜는? ");
+	scanf("%d", &p->date);
 	
-	printf("판매가격은? ");
-	scanf("%d", &p->price);
+	printf("온도는? ");
+	scanf("%f", &p->temp);
 
-    printf("배송방법은? ");
-    scanf("%d", &p->deliever);
+    printf("방 호수는? ");
+    scanf("%d", &p->room);
 
 	printf("=> 수정됨!\n");
 
 	return 1;
 }
 
-int selectDataNo(Product *p[], int count){
+int selectDataNo(student *p[], int count){
     int no;
-    listProduct(p, count);
+    listStudent(p, count);
     printf("번호는 (취소 :0)? ");
     scanf("%d", &no);
     return no;
@@ -130,11 +131,10 @@ int selectMenu(){
     return menu;
 }
 
-
-int loadData(Product *p) {
+int loadData(student *p) {
     int i = 0;
     FILE *fp;
-    fp = fopen("product.txt", "rt");
+    fp = fopen("temperature.txt", "rt");
     if(fp == NULL){
         printf("=> 파일없음");
         return 0;
@@ -142,17 +142,17 @@ int loadData(Product *p) {
     for(; ; i++){
         fscanf(fp, "%s", p[i].name);
         if(feof(fp)) break;
-        fscanf(fp, "%s", p[i].weight);
-        fscanf(fp, "%d", &p[i].price);
-        fscanf(fp, "%d", &p[i].deliever);
+        fscanf(fp, "%d", &p[i].std_id);
+        fscanf(fp, "%d", &p[i].date);
+        fscanf(fp, "%f", &p[i].temp);
+        fscanf(fp, "%d", &p[i].room);
     }
     fclose(fp);
     printf("=> 로딩성공!\n");
     return i;
 }
 
-
-int searchProduct(Product *p, int count){
+int searchStudent(student *p, int count){
     char search[20];
     int scnt = 0;
     printf("검색할 이름? ");
@@ -161,7 +161,7 @@ int searchProduct(Product *p, int count){
     printf("========================\n");
      for(int i =0; i<=count; i++)
      {
-         if(p[i].price == -1) continue;
+         if(p[i].std_id == -1) continue;
          if(strstr(p[i].name, search)) {
              printf("%2d ", i+1);
              readProduct(p[i]);
@@ -174,6 +174,7 @@ int searchProduct(Product *p, int count){
      printf("\n");
      return 1;
 }
+
 
 
 
