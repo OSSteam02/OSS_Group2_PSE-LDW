@@ -14,7 +14,7 @@ void saveData(student *p[], int count){
 }
 
 
-int createProduct(Student *p){
+int createProduct(student *p){
 
 	printf("이름은? ");
 	scanf("%s", p->name);
@@ -88,7 +88,7 @@ int selectDataNo(student *p[], int count){
     return no;
 }
 
-int deleteStudent(student *p, int* *index){
+int deleteStudent(student *p, int* index){
 	int temp_date;
 	int temp_stdID;
 	int temp_index;
@@ -110,7 +110,7 @@ int deleteStudent(student *p, int* *index){
 	}
 
 	for (int i = temp_index; i < *index-1; i++) {
-		r[i] = r[i+1];
+		p[i] = p[i+1];
 	}
 	*index--;
 	return 0;
@@ -164,7 +164,7 @@ int searchStudent(student *p, int count){
          if(p[i].std_id == -1) continue;
          if(strstr(p[i].name, search)) {
              printf("%2d ", i+1);
-             readProduct(p[i]);
+             readStudent(p[i]);
              scnt++;
          }
      }
