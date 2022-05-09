@@ -118,7 +118,7 @@ int deleteStudent(student *p, int* *index){
 
 int selectMenu(){
     int menu;
-    printf("\n*** 점수계산기 ***\n");
+    printf("\n***  ***\n");
     printf("1. 조회\n");
     printf("2. 추가\n");
     printf("3. 수정\n");
