@@ -14,22 +14,22 @@ void saveData(Product *p[], int count){
 }
 
 
-int createProduct(Product *p){
+int createProduct(Student *p){
 
 	printf("이름은? ");
 	scanf("%s", p->name);
 
-	printf("원산지는? ");
-	scanf("%s", p->explain);
+	printf("학번은? ");
+	scanf("%d", p->std_id);
 
-	printf("중량은? ");
-	scanf("%s", p->weight);
+	printf("날짜는? ");
+	scanf("%d", p->date);
 
-	printf("판매가격은? ");
-	scanf("%d", &p->price);
+	printf("온도는? ");
+	scanf("%f", &p->temp);
 
-    printf("배송방법은? ");
-    scanf("%d", &p->deliever);
+    	printf("방 번호는? ");
+    	scanf("%d", &p->room);
 
     getchar();
 
@@ -87,14 +87,31 @@ int selectDataNo(Product *p[], int count){
     return no;
 }
 
-int deleteOkProduct(Product *p){
-	printf("=> 삭제됨");
-	*p->name = -1;
-	*p->explain = -1;
-	*p->weight = -1;
-    p->price = -1;
-    p->deliever = -1;
+int deleteStudent(student *p, int* *index){
+	int temp_date;
+	int temp_stdID;
+	int temp_index;
+	student temp_p;
 
+	printf("날짜를 입력해주세요(8자리, yyyymmdd) : ");
+	scanf("%d", &temp_date);
+
+	for (int i; i < *index; i++) {
+		if (p[i].std_id == temp_stdID && p[i].date == temp_date){
+			temp_index = i;
+			break;
+		}
+	}
+
+	if (temp_index == *index) {
+		*index--;
+		return 0;
+	}
+
+	for (int i = temp_index; i < *index-1; i++) {
+		r[i] = r[i+1];
+	}
+	*index--;
 	return 0;
 }
 
