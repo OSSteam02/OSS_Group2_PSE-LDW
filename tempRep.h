@@ -23,7 +23,7 @@ int create_std(std* p);
 int create_rep(rep* r); //날짜 생성
 int read_rep(rep* r); //show product / 날짜별 학생 이름, 온도 출력
 int update_rep(rep* r); //update product // 학생추가. 학번, 온도 입력 
-int delete_rep(rep* r, int index); //delete product // index 한칸씩 땡기면 될 듯
+int delete_rep(rep* r, int* index); //delete product // index 한칸씩 땡기면 될 듯
 int select_menu();
 int edit_rep(rep* r);
 
