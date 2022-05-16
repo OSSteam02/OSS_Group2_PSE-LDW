@@ -20,16 +20,16 @@ int createStudent(student *p){
 	scanf("%s", p->name);
 
 	printf("학번은? ");
-	scanf("%d", p->std_id);
+	scanf("%d", &p->std_id);
 
 	printf("날짜는? ");
-	scanf("%d", p->date);
+	scanf("%d", &p->date);
 
 	printf("온도는? ");
 	scanf("%f", &p->temp);
 
-    	printf("방 번호는? ");
-    	scanf("%d", &p->room);
+    printf("방 번호는? ");
+    scanf("%d", &p->room);
 
     getchar();
 
@@ -54,7 +54,7 @@ void listStudent(student *p[], int count)
 void readStudent(student p){
 
     if(p.std_id == -1 && p.date == -1) return;
-        printf("%8s%8d%8d%8f%8d\n", p.name, p.std_id, p.date, p.temp, p.room);
+        printf("%8s\t%8d\t%8d\t%1f\t%8d\n", p.name, p.std_id, p.date, p.temp, p.room);
     
 }
 
@@ -88,31 +88,63 @@ int selectDataNo(student *p[], int count){
     return no;
 }
 
-int deleteStudent(student *p, int* index){
+int deleteOkStudent(student **p, int* index){
 	int temp_date;
 	int temp_stdID;
 	int temp_index;
-	student temp_p;
 
-	printf("날짜를 입력해주세요(8자리, yyyymmdd) : ");
+	printf("날짜를 입력해주세요 : ");
 	scanf("%d", &temp_date);
+    printf("학번을 입력해주세요 : ");
+	scanf("%d", &temp_stdID);
 
-	for (int i; i < *index; i++) {
-		if (p[i].std_id == temp_stdID && p[i].date == temp_date){
+	for (int i=0; i < *index; i++) {
+		if (p[i]->std_id == temp_stdID && p[i]->date == temp_date){
 			temp_index = i;
+            printf("\nfind index : %d\n", temp_index);
 			break;
 		}
 	}
 
 	if (temp_index == *index) {
-		*index--;
+        printf("\nlast index : %d\n", temp_index);
 		return 0;
 	}
 
 	for (int i = temp_index; i < *index-1; i++) {
 		p[i] = p[i+1];
 	}
-	*index--;
+    printf("\nmiddle index : %d\n", temp_index);
+	return 0;
+}
+
+int searchDate(student **p, int* index){
+	int temp_date;
+
+	printf("날짜를 입력해주세요 : ");
+	scanf("%d", &temp_date);
+
+	for (int i=0; i < *index; i++) {
+		if (p[i]->date == temp_date){
+			readStudent(*p[i]);
+		}
+	}
+
+	return 0;
+}
+
+int searchTemp(student **p, int* index){
+	int temp_Temp;
+
+	printf("온도를 입력해주세요 : ");
+	scanf("%d", &temp_Temp);
+
+	for (int i=0; i < *index; i++) {
+		if (p[i]->temp >= temp_Temp){
+			readStudent(*p[i]);
+		}
+	}
+
 	return 0;
 }
 
@@ -125,6 +157,9 @@ int selectMenu(){
     printf("4. 삭제\n");
     printf("5. 파일저장\n");
     printf("6. 이름검색\n");
+    printf("7. 날짜로 검색\n");
+    printf("8. 특정 온도 이상인 사람 검색\n");
+    printf("9. 특정인물의 지난 3일간 쌓인 벌점은?\n");
     printf("0. 종료\n\n");
     printf("=> 원하는 메뉴는? ");
     scanf("%d", &menu);
@@ -153,12 +188,11 @@ int loadData(student *p) {
 }
 
 int searchStudent(student *p, int count){
-    char search[20];
+    char search[100];
     int scnt = 0;
     printf("검색할 이름? ");
     scanf("%s", search);
-    printf("No Name Kor Eng Math Sum Avg\n");
-    printf("========================\n");
+
      for(int i =0; i<=count; i++)
      {
          if(p[i].std_id == -1) continue;
@@ -176,4 +210,29 @@ int searchStudent(student *p, int count){
 }
 
 
+int searchPenalty(student *p, int count){
+    char search[20];
+    int scnt = 0;
+    int period = 0;
+    int penalty = 0;
+    printf("검색할 이름? ");
+    scanf("%s", search);
+
+     for(int i =0; i<=count; i++)
+     {
+         if(p[i].std_id == -1) continue;
+         if(strstr(p[i].name, search)) {
+             printf("%2d ", i+1);
+             readStudent(p[i]);
+             scnt++;
+         }
+     }
+     if(scnt == 0){
+         printf("=> 검색된 데이터 없음!");
+     }
+     printf("%d\n",scnt);
+     penalty = 3 - scnt;
+    printf("지난 3일 동안 쌓인 벌점은 %d점 입니다.\n", penalty);
+     return 1;
+}
 
