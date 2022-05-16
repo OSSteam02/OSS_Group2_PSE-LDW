@@ -15,36 +15,44 @@ int main(void){
         if (menu == 0)break;
         if (menu == 1){
             if(count > 0)
-			    listProduct(p1,curcount);}
+			    listStudent(p1,curcount);}
         else if (menu == 2){
             p1[curcount] = (student *)malloc(sizeof(student));
-            count += createProduct(p1[curcount]); curcount++;}
+            count += createStudent(p1[curcount]); curcount++;}
         else if (menu == 3){
              no = selectDataNo(p1, curcount);
             if(no == 0){
                 printf("=> 취소됨!\n");
                 continue;
             }
-            updateProduct(p1[no-1]);
+            updateStudent(p1[no-1]);
         }
         else if (menu == 4){
-            no = selectDataNo(p1,curcount);
-            if(no == 0){
-                printf("=> 취소됨!\n");
-                continue;
-            }
+
             int deleteok;
             printf("정말로 삭제하시겠습니까?(삭제 :1)");
             scanf("%d",&deleteok);
+
             if(deleteok == 1){
-                if(deleteOkProduct(p1[no-1])) curcount--;
+                if(0==deleteOkStudent(p1 , &curcount)){
+                    curcount--;
+                }
             }
         }
         else if (menu == 5){
             saveData(p1, curcount);
         }
         else if(menu == 6){
-            searchProduct(*p1, curcount);
+            searchStudent(*p1, curcount);
+        }
+        else if(menu == 7) {
+            searchDate(p1,&curcount);
+        }
+        else if(menu == 8) {
+            searchTemp(p1, &curcount);
+        }
+        else if(menu == 9) {
+            searchPenalty(*p1, curcount);
         }
     }
     printf("종료됨!\n");
