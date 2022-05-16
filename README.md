@@ -23,10 +23,10 @@
 
 ## 역할소개
 1. 박세은
-- 기능구현(함수: Create, Read, List, Search Name, Search Temp)
+- 기능구현(함수: Create, Read, List, Search Name, Find)
 
 2. 이동원
-- 기능구현(함수: Search Count, Delete, Load, Save, Find)
+- 기능구현(함수: Search Date, Delete, Load, Save, Search Name, Search Temp)
 
 
 ### 개발환경 및 언어
